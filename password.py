@@ -8,8 +8,10 @@ def main():
         return
 
     # check if input is greater or equal to 12
+    is_long_enough = False
     if len(user_password) >= 12:
         strength_score += 1
+        is_long_enough = True
     
     # then check if it has a capital letter
     has_capital = False
@@ -20,8 +22,10 @@ def main():
         strength_score += 1
 
     # then check if it has a special char
+    has_special_char = False
     if user_password.isalnum() == False:
         strength_score += 1
+        has_special_char = True
 
     # then check if it has at least one number
     has_digit = False
@@ -40,6 +44,26 @@ def main():
         print("Strength: Fair")
     else:
         print("Strength: Weak")
+
+    # print out what password is missing
+    print("Your password should have:")
+    if is_long_enough:
+        print("(✓) At least 12 characters")
+    else:
+        print("(x) At least 12 characters")
+    if has_capital:
+        print("(✓) One uppercase letter")
+    else:
+        print("(x) One uppercase letter")
+    if has_special_char:
+        print("(✓) One symbol or special character")
+    else:
+        print("(x) One symbol or special character")
+    if has_digit:
+        print("(✓) One number")
+    else:
+        print("(x) One number")
+
 
 
 
