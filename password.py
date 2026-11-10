@@ -1,46 +1,53 @@
 # password.py
 
-def main():
-    user_password = input('Enter your password: ')
+def check_password(password):
     strength_score = 0
-    if len(user_password) < 1:
-        print("Please enter a valid password")
-        return
 
     # check if input is greater or equal to 12
     is_long_enough = False
-    if len(user_password) >= 12:
+    if len(password) >= 12:
         strength_score += 1
         is_long_enough = True
-    
+
     # then check if it has a capital letter
     has_capital = False
-    for letter in user_password:
-        if letter.isupper() == True:
+    for letter in password:
+        if letter.isupper():
             has_capital = True
     if has_capital:
         strength_score += 1
 
     # then check if it has a special char
     has_special_char = False
-    if user_password.isalnum() == False:
+    if not password.isalnum():
         strength_score += 1
         has_special_char = True
 
     # then check if it has at least one number
     has_digit = False
-    for letter in user_password:
-        if letter.isdigit() == True:
+    for letter in password:
+        if letter.isdigit():
             has_digit = True
     if has_digit:
         strength_score += 1
+
+    return strength_score, is_long_enough, has_capital, has_special_char, has_digit
+
+
+def main():
+    user_password = input('Enter your password: ')
+    if len(user_password) < 1:
+        print("Please enter a valid password")
+        return
+
+    strength_score, is_long_enough, has_capital, has_special_char, has_digit = check_password(user_password)
 
     # convert strength score to words
     if strength_score == 4:
         print("Strength: Strong")
     elif strength_score == 3:
         print("Strength: Good")
-    elif strength_score == 2: 
+    elif strength_score == 2:
         print("Strength: Fair")
     else:
         print("Strength: Weak")
@@ -63,9 +70,6 @@ def main():
         print("(✓) One number")
     else:
         print("(x) One number")
-
-
-
 
 
 if __name__ == "__main__":
