@@ -23,10 +23,6 @@ def main():
     if user_password.isalnum() == False:
         strength_score += 1
 
-
-
-
-        
     # then check if it has at least one number
     has_digit = False
     for letter in user_password:
@@ -35,8 +31,18 @@ def main():
     if has_digit:
         strength_score += 1
 
+    # convert strength score to words
+    if strength_score == 4:
+        print("Strength: Strong")
+    elif strength_score == 3:
+        print("Strength: Good")
+    elif strength_score == 2: 
+        print("Strength: Fair")
+    else:
+        print("Strength: Weak")
 
-    print(strength_score)
+
+
 
 if __name__ == "__main__":
     main()
